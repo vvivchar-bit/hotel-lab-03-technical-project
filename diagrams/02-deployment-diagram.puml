@@ -1,0 +1,35 @@
+@startuml
+title Діаграма розгортання програмної системи "Готель"
+
+skinparam backgroundColor #FFFFFF
+skinparam nodeBackgroundColor #F8FBFF
+skinparam nodeBorderColor #1F4E79
+skinparam nodeFontColor #000000
+skinparam artifactBackgroundColor #FFFFFF
+skinparam artifactBorderColor #1F4E79
+skinparam ArrowColor #1F4E79
+skinparam ArrowFontColor #000000
+skinparam shadowing false
+skinparam roundcorner 10
+
+node "Користувач" as User {
+  artifact "Веб-браузер\nGoogle Chrome / Edge" as Browser
+}
+
+node "Клієнтський застосунок" as App {
+  artifact "index.html\nструктура сторінки" as HTML
+  artifact "style.css\nоформлення інтерфейсу" as CSS
+  artifact "script.js\nлогіка роботи системи" as JS
+}
+
+database "LocalStorage\nсховище даних браузера" as Storage
+
+cloud "GitHub Pages\nабо локальний запуск" as Hosting
+
+User --> Browser : відкриває систему
+Browser --> Hosting : завантажує сторінку
+Hosting --> App : надає файли
+App --> Storage : зберігає бронювання
+Storage --> App : повертає дані
+
+@enduml
